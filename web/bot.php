@@ -73,7 +73,7 @@ if (!is_null($events['events'])) {
 			// echo $result . "\r\n";
 
 			try {
-			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
+			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text);
 			$response = $bot->replyMessage($replyToken, $textMessageBuilder);
 			if ($response->isSucceeded()) {
 			    echo 'Succeeded!';

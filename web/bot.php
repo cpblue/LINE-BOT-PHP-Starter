@@ -3,8 +3,8 @@
 require_once '../vendor/autoload.php';
 
 
-// $access_token = 'N8yg/hFYYNKm8P4z0isjQ0CcnW1IZyIWqzYBwjvmNxr/ZLXw0lx6VaTlnT/cJVxqiYe/kxtOZanKAQye4UvoUYx+QQsD10Egl5x6L/RCPcExUrqnfIvGEfNk6JcXQ/5zWNV2EXwQ52RBupyF6s2JaQdB04t89/1O/w1cDnyilFU=';
-// $chanel_secret = '761b5b0c998b4c7cc139552adfaece2a';
+$access_token = getenv('LINEBOT_ACCESS_TOKEN');
+$chanel_secret = getenv('LINEBOT_CHANNEL_SECRET');
 
 
 // try {
@@ -49,7 +49,7 @@ if (!is_null($events['events'])) {
 				'messages' => [$messages],
 			];
 			$post = json_encode($data);
-			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $LINEBOT_ACCESS_TOKEN);
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");

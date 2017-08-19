@@ -6,8 +6,18 @@ require_once '../vendor/autoload.php';
 $access_token = 'N8yg/hFYYNKm8P4z0isjQ0CcnW1IZyIWqzYBwjvmNxr/ZLXw0lx6VaTlnT/cJVxqiYe/kxtOZanKAQye4UvoUYx+QQsD10Egl5x6L/RCPcExUrqnfIvGEfNk6JcXQ/5zWNV2EXwQ52RBupyF6s2JaQdB04t89/1O/w1cDnyilFU=';
 $chanel_secret = '761b5b0c998b4c7cc139552adfaece2a';
 
-$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
-$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $chanel_secret]);
+
+try {
+	$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
+	$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $chanel_secret]);
+  //If the exception is thrown, this text will not be shown
+  echo 'initial bot successfully';
+}
+
+//catch exception
+catch(Exception $e) {
+  echo 'Unable to init bot with error Message: ' .$e->getMessage();
+}
 
 
 // Get POST body content

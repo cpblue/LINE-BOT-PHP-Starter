@@ -64,23 +64,33 @@ if (!is_null($events['events'])) {
 			// curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 			// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-		      $proxy = 'velodrome.usefixie.com:80';
-		      $proxyauth = 'fixie:aViCdpri3CDEA4v';
-		      curl_setopt($ch, CURLOPT_PROXY, $proxy);
-		      curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
+		      // $proxy = 'velodrome.usefixie.com:80';
+		      // $proxyauth = 'fixie:aViCdpri3CDEA4v';
+		      // curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		      // curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
 			// $result = curl_exec($ch);
 			// curl_close($ch);
 			// echo $result . "\r\n";
 
+			try {
 			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
 			$response = $bot->replyMessage($replyToken, $textMessageBuilder);
 			if ($response->isSucceeded()) {
 			    echo 'Succeeded!';
 			    return;
 			}
+			}
 
-			// Failed
-			echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+			//catch exception
+			catch(Exception $e) {
+				// Failed
+				// echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+			  echo 'fail to reply: ' .$e->getMessage();
+			}
+
+
+
+
 
 		}
 	}

@@ -2,22 +2,24 @@
 
 require_once '../vendor/autoload.php';
 
+use LINE\LINEBot;
+use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 
 $access_token = getenv('LINEBOT_ACCESS_TOKEN');
 $chanel_secret = getenv('LINEBOT_CHANNEL_SECRET');
 
 
-// try {
-// 	$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
-// 	$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $chanel_secret]);
-//   //If the exception is thrown, this text will not be shown
-//   echo 'initial bot successfully';
-// }
+try {
+	$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
+	$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $chanel_secret]);
+  //If the exception is thrown, this text will not be shown
+  echo 'initial bot successfully';
+}
 
-// //catch exception
-// catch(Exception $e) {
-//   echo 'Unable to init bot with error Message: ' .$e->getMessage();
-// }
+//catch exception
+catch(Exception $e) {
+  echo 'Unable to init bot with error Message: ' .$e->getMessage();
+}
 
 
 // Get POST body content

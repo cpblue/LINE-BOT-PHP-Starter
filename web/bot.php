@@ -13,7 +13,7 @@ try {
 	$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 	$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $chanel_secret]);
   //If the exception is thrown, this text will not be shown
-  echo 'initial bot successfully';
+  // echo 'initial bot successfully';
 }
 
 //catch exception
@@ -67,15 +67,15 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 			echo $result . "\r\n";
 
-			// $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
-			// $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-			// if ($response->isSucceeded()) {
-			//     echo 'Succeeded!';
-			//     return;
-			// }
+			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
+			$response = $bot->replyMessage($replyToken, $textMessageBuilder);
+			if ($response->isSucceeded()) {
+			    echo 'Succeeded!';
+			    return;
+			}
 
-			// // Failed
-			// echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+			// Failed
+			echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
 		}
 	}

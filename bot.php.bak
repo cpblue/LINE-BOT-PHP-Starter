@@ -1,14 +1,5 @@
 <?php
-
-require_once '../vendor/autoload.php';
-
-
 $access_token = 'N8yg/hFYYNKm8P4z0isjQ0CcnW1IZyIWqzYBwjvmNxr/ZLXw0lx6VaTlnT/cJVxqiYe/kxtOZanKAQye4UvoUYx+QQsD10Egl5x6L/RCPcExUrqnfIvGEfNk6JcXQ/5zWNV2EXwQ52RBupyF6s2JaQdB04t89/1O/w1cDnyilFU=';
-$chanel_secret = '761b5b0c998b4c7cc139552adfaece2a';
-
-$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
-$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $chanel_secret]);
-
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -18,7 +9,6 @@ $events = json_decode($content, true);
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
-
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
@@ -47,24 +37,14 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-		      $proxy = 'velodrome.usefixie.com:80';
-		      $proxyauth = 'fixie:aViCdpri3CDEA4v';
-		      curl_setopt($ch, CURLOPT_PROXY, $proxy);
-		      curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
+      $proxy = 'velodrome.usefixie.com:80';
+      $proxyauth = 'fixie:aViCdpri3CDEA4v';
+      curl_setopt($ch, CURLOPT_PROXY, $proxy);
+      curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
 			$result = curl_exec($ch);
 			curl_close($ch);
+
 			echo $result . "\r\n";
-
-			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
-			$response = $bot->replyMessage($replyToken, $textMessageBuilder);
-			if ($response->isSucceeded()) {
-			    echo 'Succeeded!';
-			    return;
-			}
-
-			// Failed
-			echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
-
 		}
 	}
 }

@@ -1,1 +1,5 @@
-
+{
+  "require": {
+    "line/line-bot-sdk-php": "~2.2",
+  }
+}
